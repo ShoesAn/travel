@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/airplaneFragment">
+
+    <fragment
+        android:id="@+id/airplaneFragment"
+        android:name="com.example.travelapp.fragment.AirplaneFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/airplane_fragment">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/exchangeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exchangeFragment"
+        android:name="com.example.travelapp.fragment.ExchangeFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/exchange_fragment">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/airplaneFragment" />
+    </fragment>
+</navigation>
