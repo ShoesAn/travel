@@ -1,9 +1,11 @@
 package com.example.travelapp.model
 
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.InputStreamReader
 
 class ScheduleModel {
 
@@ -23,8 +25,9 @@ class ScheduleModel {
                           val airFlyStatus : String,
                           val airFlyDelayCause : String)
 
-    constructor(flightString: String){
+    constructor(flightString: InputStreamReader){
         val itemType = object : TypeToken<List<FlightInfo>>() {}.type
-        flightList = Gson().fromJson(flightString, itemType)
+        val jsonObject = JSONObject(flightString.readText())
+        flightList = Gson().fromJson(jsonObject.getJSONArray("InstantSchedule").toString(), itemType)
     }
 }

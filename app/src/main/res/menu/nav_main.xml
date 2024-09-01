@@ -5,7 +5,7 @@
     <item
         android:title="Airplane"
         android:id="@+id/airplaneFragment"
-        android:icon="@drawable/airplane_selector"/>
+        android:icon="@drawable/airplane_selector" />
 
     <item
         android:title="ExchangeFragment"

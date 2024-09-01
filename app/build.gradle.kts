@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
@@ -24,6 +25,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String","API_TOKEN", "\"fca_live_5wmxSDAS0wzbYi5EiFxwVsF0XQca9DnZh63XpGI2\"")
+        }
+
+        debug {
+            buildConfigField("String","API_TOKEN", "\"fca_live_5wmxSDAS0wzbYi5EiFxwVsF0XQca9DnZh63XpGI2\"")
         }
     }
     compileOptions {
@@ -35,6 +41,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -47,6 +54,10 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.8.21")
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.androidx.activity.ktx)
+    implementation (libs.androidx.fragment.ktx)
     implementation ("com.google.code.gson:gson:2.8.6")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
