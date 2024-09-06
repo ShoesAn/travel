@@ -21,36 +21,25 @@ sealed class Result<out R> {
 class AirplaneRepository {
     // Function that makes the network request, blocking the current thread
     fun getAirplaneInfo(): Result<ScheduleModel> {
-
         val file = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
         return Result.Success(ScheduleModel(InputStreamReader(FileInputStream(file.path.plus("/airplan_temp")))))
-//        val url = URL(loginUrl)
-//        (url.openConnection() as? HttpURLConnection)?.run {
-//            doOutput = true
-//
-//        }
-//        return Result.Error(Exception("Cannot open HttpURLConnection"))
     }
 }
 
 class ChangeRepository {
     private val loginUrl = "https://api.freecurrencyapi.com/v1/latest?apikey=" + BuildConfig.API_TOKEN
 
-    // Function that makes the network request, blocking the current thread
     fun getChangeInfo(currency: String?): Result<MoneyCurrency> {
-
         var url = URL(loginUrl)
         currency?.let {
             url = URL(url.path + "&base_currency=${currency}")
         }
-        Log.e(ChangeRepository::class.java.simpleName,"url : $url")
         (url.openConnection() as? HttpURLConnection)?.run {
             requestMethod = "GET"
             setRequestProperty("Content-Type", "application/json; utf-8")
             setRequestProperty("Accept", "application/json")
             doInput = true
             val data = JSONObject(InputStreamReader(inputStream).readText())
-            Log.e(ChangeRepository::class.java.simpleName,"data : ${data.optJSONObject("data")!!}")
             return Result.Success(Gson().fromJson(data.optJSONObject("data")!!.toString(), MoneyCurrency::class.java))
         }
         return Result.Error(Exception("Cannot open HttpURLConnection"))

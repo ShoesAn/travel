@@ -12,13 +12,8 @@ import com.example.travelapp.repository.AirplaneRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AirplaneViewModel( ) : ViewModel() {
-
+class AirplaneViewModel : ViewModel() {
     val planeInfoList = MutableLiveData<List<FlightInfo>?>()
-
-    init {
-
-    }
     private val airplaneRepository: AirplaneRepository = AirplaneRepository()
 
     fun getAirplaneInfo() {
@@ -26,15 +21,14 @@ class AirplaneViewModel( ) : ViewModel() {
 
             val result = try {
                 airplaneRepository.getAirplaneInfo()
-            } catch(e: Exception) {
+            } catch (e: Exception) {
                 planeInfoList.postValue(null)
                 com.example.travelapp.repository.Result.Error(Exception("Network request failed"))
             }
             when (result) {
-                is  com.example.travelapp.repository.Result.Success<ScheduleModel> -> {
+                is com.example.travelapp.repository.Result.Success<ScheduleModel> -> {
                     planeInfoList.postValue(result.data.flightList)
                 }
-                    // Happy path
                 else -> planeInfoList.postValue(null)
             }
         }

@@ -18,13 +18,9 @@ import com.example.travelapp.viewmodel.CurrencyViewModel
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class ExchangeFragment : Fragment() {
-
     private var _binding: ExchangeFragmentBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
-    private val currencyViewModel : CurrencyViewModel by viewModels()
+    private val currencyViewModel: CurrencyViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -39,8 +35,8 @@ class ExchangeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        currencyViewModel.currencyInfoList.observe(viewLifecycleOwner){
-            if(it != null){
+        currencyViewModel.currencyInfoList.observe(viewLifecycleOwner) {
+            if (it != null) {
                 val currencyAdapter = CurrencyAdapter()
                 currencyAdapter.setCurrency(it)
                 binding.changeRecycle.adapter = currencyAdapter
@@ -50,7 +46,7 @@ class ExchangeFragment : Fragment() {
             }
         }
 
-        val timer = object: CountDownTimer(3 * 60 * 1000, 3 * 60 * 1000) {
+        val timer = object : CountDownTimer(3 * 60 * 1000, 3 * 60 * 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 currencyViewModel.getCurrencyInfo(null)
             }

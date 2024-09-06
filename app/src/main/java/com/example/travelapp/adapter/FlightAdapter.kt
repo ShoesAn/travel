@@ -10,17 +10,17 @@ import com.example.travelapp.R
 import com.example.travelapp.model.ScheduleModel
 import com.example.travelapp.model.ScheduleModel.FlightInfo
 
-class FlightAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
+class FlightAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var planeInfoList: List<FlightInfo>? = ArrayList()
 
-    fun setPlaneInfo(list: List<FlightInfo>? ){
+    fun setPlaneInfo(list: List<FlightInfo>?) {
         planeInfoList = list
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.flight_item_view, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.flight_item_view, parent, false)
         return FlightItemViewHolder(itemView)
     }
 
@@ -29,7 +29,7 @@ class FlightAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if(holder is FlightItemViewHolder) {
+        if (holder is FlightItemViewHolder) {
             planeInfoList?.let { holder.bindData(it.get(position)) }
         }
     }
@@ -44,7 +44,6 @@ class FlightAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
         val airLineName: TextView = itemView.findViewById(R.id.airLineName)
         val upAirportCode: TextView = itemView.findViewById(R.id.upAirportCode)
         val upAirportName: TextView = itemView.findViewById(R.id.upAirportName)
-
 
         fun bindData(item: FlightInfo) {
             expectNumText.text = item.expectTime

@@ -12,17 +12,18 @@ import com.example.travelapp.model.MoneyCurrency
 import com.example.travelapp.model.ScheduleModel
 import com.example.travelapp.model.ScheduleModel.FlightInfo
 
-class CurrencyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
+class CurrencyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var currencyData: MoneyCurrency
 
-    fun setCurrency(currency: MoneyCurrency){
+    fun setCurrency(currency: MoneyCurrency) {
         currencyData = currency
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.currency_item_view, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.currency_item_view, parent, false)
         return CurrencyItemViewHolder(itemView)
     }
 
@@ -31,7 +32,7 @@ class CurrencyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if(holder is CurrencyItemViewHolder) {
+        if (holder is CurrencyItemViewHolder) {
             holder.bindData(currencyData, position)
         }
     }
@@ -41,28 +42,33 @@ class CurrencyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
         val currencyNum: TextView = itemView.findViewById(R.id.currencyNum)
 
         fun bindData(item: MoneyCurrency, position: Int) {
-            when(position){
-                0 ->  {
+            when (position) {
+                0 -> {
                     currencyName.text = "AUD"
                     currencyNum.text = item.AUD
                 }
-                1 ->  {
+
+                1 -> {
                     currencyName.text = "CNY"
                     currencyNum.text = item.CNY
                 }
-                2 ->  {
+
+                2 -> {
                     currencyName.text = "EUR"
                     currencyNum.text = item.EUR
                 }
-                3 ->  {
+
+                3 -> {
                     currencyName.text = "JPY"
                     currencyNum.text = item.JPY
                 }
-                4 ->  {
+
+                4 -> {
                     currencyName.text = "KRW"
                     currencyNum.text = item.KRW
                 }
-                5 ->  {
+
+                5 -> {
                     currencyName.text = "USD"
                     currencyNum.text = item.USD
                 }

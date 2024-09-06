@@ -16,9 +16,7 @@ class CurrencyViewModel: ViewModel()  {
 
     fun getCurrencyInfo(currency: String?) {
         viewModelScope.launch(Dispatchers.IO) {
-
             val result = try {
-                Log.e(CurrencyViewModel::class.java.simpleName,"currency : ${currency}")
                 changeRepository.getChangeInfo(currency)
             } catch(e: Exception) {
                 currencyInfoList.postValue(null)

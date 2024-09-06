@@ -24,11 +24,7 @@ import kotlinx.coroutines.launch
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class AirplaneFragment : Fragment() {
-
     private var _binding: AirplaneFragmentBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     private val airplaneViewModel : AirplaneViewModel by viewModels()
 
@@ -38,7 +34,6 @@ class AirplaneFragment : Fragment() {
     ): View {
         _binding = AirplaneFragmentBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
